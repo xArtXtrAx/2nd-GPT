@@ -20,30 +20,52 @@ public class ClickerGameController : MonoBehaviour
 
     private float nextUpgradeClickTime;
 
+    public Button incrementButton;
+    public Scrollbar incrementButtonProgress;
+    public TextMeshProUGUI incrementButtonCounterText;
+
+    private int incrementButtonThreshold = 10;
+    private int incrementButtonClicks = 1;
+    private float incrementButtonMultiplier = 1.4f;
+
     void Start()
     {
         mainButton.onClick.AddListener(OnClickMainButton);
         upgradeButton.onClick.AddListener(OnClickUpgradeButton);
+        
+        incrementButton.onClick.AddListener(OnClickIncrementButton);
+
 
         UpdateUI();
     }
 
     void Update()
     {
-        if (clickCounter >= upgradeClickThreshold && Time.time >= nextUpgradeClickTime)
+        if (clickCounter >= incrementButtonThreshold)
         {
-            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
-            progressBarFill.GetComponent<Image>().color = progressBarFill.localScale.x >= 1 ? Color.green : Color.blue;
-            upgradeButton.interactable = true;
+            incrementButton.interactable = true;
+            incrementButtonProgress.size = 1f;
         }
         else
         {
-            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
-            progressBarFill.GetComponent<Image>().color = Color.blue;
-            upgradeButton.interactable = false;
+            incrementButton.interactable = false;
+            incrementButtonProgress.size = (float)clickCounter / incrementButtonThreshold;
         }
 
-        clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
+        incrementButtonCounterText.text = $"Available Clicks: {incrementButtonClicks}";
+
+    }
+
+    void OnClickIncrementButton()
+    {
+        if (clickCounter >= incrementButtonThreshold)
+        {
+            clicksPerClick += incrementButtonClicks;
+            clickCounter -= incrementButtonThreshold;
+            incrementButtonClicks++;
+            incrementButtonThreshold = Mathf.CeilToInt(incrementButtonThreshold * incrementButtonMultiplier);
+            UpdateUI();
+        }
     }
 
 
