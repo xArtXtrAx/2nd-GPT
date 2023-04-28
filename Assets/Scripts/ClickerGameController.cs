@@ -9,6 +9,7 @@ public class ClickerGameController : MonoBehaviour
     public TextMeshProUGUI clickCounterText;
     public TextMeshProUGUI clicksPerSecondCounterText;
     public TextMeshProUGUI clicksPerClickText;
+
     public Button mainButton;
     public Button upgradeButton;
     public RectTransform progressBarFill;
@@ -22,7 +23,9 @@ public class ClickerGameController : MonoBehaviour
 
     public Button incrementButton;
     public Scrollbar incrementButtonProgress;
+
     public TextMeshProUGUI incrementButtonCounterText;
+    public TextMeshProUGUI powerLevelText;
 
     private int incrementButtonThreshold = 10;
     private int incrementButtonClicks = 1;
@@ -34,6 +37,7 @@ public class ClickerGameController : MonoBehaviour
         upgradeButton.onClick.AddListener(OnClickUpgradeButton);
         
         incrementButton.onClick.AddListener(OnClickIncrementButton);
+        incrementButtonProgress.size = 0f;
 
 
         UpdateUI();
@@ -67,6 +71,8 @@ public class ClickerGameController : MonoBehaviour
 
         int availableClicks = clickCounter / incrementButtonThreshold;
         incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
+        
+        powerLevelText.text = $"Power Level: {incrementButtonClicks - 1}";
 
         clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
     }
@@ -76,13 +82,14 @@ public class ClickerGameController : MonoBehaviour
     {
         if (clickCounter >= incrementButtonThreshold)
         {
-            clicksPerClick += incrementButtonClicks;
+            clicksPerClick++;
             clickCounter -= incrementButtonThreshold;
             incrementButtonClicks++;
             incrementButtonThreshold = Mathf.CeilToInt(incrementButtonThreshold * incrementButtonMultiplier);
             UpdateUI();
         }
     }
+
 
 
     void OnClickMainButton()
