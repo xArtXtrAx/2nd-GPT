@@ -31,6 +31,9 @@ public class ClickerGameController : MonoBehaviour
     private int incrementButtonClicks = 1;
     private float incrementButtonMultiplier = 1.4f;
 
+    public Image incrementButtonHandle;
+
+
     void Start()
     {
         mainButton.onClick.AddListener(OnClickMainButton);
@@ -69,6 +72,12 @@ public class ClickerGameController : MonoBehaviour
             incrementButtonProgress.size = (float)clickCounter / incrementButtonThreshold;
         }
 
+        // Adjust the scrollbar handle's alpha value
+        Color handleColor = incrementButtonHandle.color;
+        handleColor.a = clickCounter > 0 ? 1f : 0f;
+        incrementButtonHandle.color = handleColor;
+
+        // Calculate the available clicks and update the text
         int availableClicks = clickCounter / incrementButtonThreshold;
         incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
         
@@ -84,7 +93,6 @@ public class ClickerGameController : MonoBehaviour
         {
             clicksPerClick++;
             clickCounter -= incrementButtonThreshold;
-            incrementButtonClicks++;
             incrementButtonThreshold = Mathf.CeilToInt(incrementButtonThreshold * incrementButtonMultiplier);
             UpdateUI();
         }
