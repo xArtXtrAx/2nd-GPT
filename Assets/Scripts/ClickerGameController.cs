@@ -41,6 +41,19 @@ public class ClickerGameController : MonoBehaviour
 
     void Update()
     {
+        if (clickCounter >= upgradeClickThreshold && Time.time >= nextUpgradeClickTime)
+        {
+            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
+            progressBarFill.GetComponent<Image>().color = progressBarFill.localScale.x >= 1 ? Color.green : Color.blue;
+            upgradeButton.interactable = true;
+        }
+        else
+        {
+            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
+            progressBarFill.GetComponent<Image>().color = Color.blue;
+            upgradeButton.interactable = false;
+        }
+
         if (clickCounter >= incrementButtonThreshold)
         {
             incrementButton.interactable = true;
@@ -52,9 +65,12 @@ public class ClickerGameController : MonoBehaviour
             incrementButtonProgress.size = (float)clickCounter / incrementButtonThreshold;
         }
 
-        incrementButtonCounterText.text = $"Available Clicks: {incrementButtonClicks}";
+        int availableClicks = clickCounter / incrementButtonThreshold;
+        incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
 
+        clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
     }
+
 
     void OnClickIncrementButton()
     {
