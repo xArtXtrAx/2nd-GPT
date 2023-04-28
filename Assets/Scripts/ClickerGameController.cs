@@ -48,51 +48,42 @@ public class ClickerGameController : MonoBehaviour
 
     void Update()
     {
-        if (clickCounter >= upgradeClickThreshold && Time.time >= nextUpgradeClickTime)
-        {
-            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
-            progressBarFill.GetComponent<Image>().color = progressBarFill.localScale.x >= 1 ? Color.green : Color.blue;
-            upgradeButton.interactable = true;
-        }
-        else
-        {
-            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
-            progressBarFill.GetComponent<Image>().color = Color.blue;
-            upgradeButton.interactable = false;
-        }
-
         // Calculate the available clicks and update the text
-        int availableClicks = clickCounter / incrementButtonThreshold;
+        int availableClicks = Mathf.FloorToInt((float)clickCounter / incrementButtonThreshold);
         incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
 
         // Update the incrementButton clickability and progress
         if (clickCounter >= incrementButtonThreshold)
         {
             incrementButton.interactable = true;
-            incrementButtonProgress.size = 1f;
+            incrementButtonProgress.size = (float)(clickCounter % incrementButtonThreshold) / incrementButtonThreshold;
         }
         else
         {
             incrementButton.interactable = false;
-            incrementButtonProgress.size = (float)clickCounter / incrementButtonThreshold;
+            incrementButtonProgress.size = (float)(clickCounter % incrementButtonThreshold) / incrementButtonThreshold;
         }
 
         // Adjust the scrollbar handle's alpha value
         Color handleColor = incrementButtonHandle.color;
         handleColor.a = clickCounter > 0 ? 1f : 0f;
         incrementButtonHandle.color = handleColor;
-        
-        powerLevelText.text = $"Power Level: {incrementButtonClicks - 1}";
 
-        clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
+        powerLevelText.text = $"Power Level: {clicksPerClick - 1}";
+
+        // Update the total click counter text
+        clickCounterText.text = $"Total Clicks: {clickCounter}";
+        clicksPerSecondCounterText.text = $"Clicks Per Second: {clicksPerSecond}";
+        clicksPerClickText.text = $"Clicks Per Click: {clicksPerClick}";
     }
+
+
 
     void OnClickIncrementButton()
     {
         if (clickCounter >= incrementButtonThreshold)
         {
             clicksPerClick++;
-            clickCounter -= incrementButtonThreshold;
             incrementButtonThreshold = Mathf.CeilToInt(incrementButtonThreshold * incrementButtonMultiplier);
             UpdateUI();
         }
