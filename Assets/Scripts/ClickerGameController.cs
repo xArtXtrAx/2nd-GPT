@@ -32,19 +32,20 @@ public class ClickerGameController : MonoBehaviour
     {
         if (clickCounter >= upgradeClickThreshold && Time.time >= nextUpgradeClickTime)
         {
-            progressBarFill.anchorMax = new Vector2((float)clickCounter / upgradeClickThreshold, progressBarFill.anchorMax.y);
-            progressBarFill.GetComponent<Image>().color = progressBarFill.anchorMax.x >= 1 ? Color.green : Color.blue;
+            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
+            progressBarFill.GetComponent<Image>().color = progressBarFill.localScale.x >= 1 ? Color.green : Color.blue;
             upgradeButton.interactable = true;
         }
         else
         {
-            progressBarFill.anchorMax = new Vector2((float)clickCounter / upgradeClickThreshold, progressBarFill.anchorMax.y);
+            progressBarFill.localScale = new Vector3((float)clickCounter / upgradeClickThreshold, 1, 1);
             progressBarFill.GetComponent<Image>().color = Color.blue;
             upgradeButton.interactable = false;
         }
 
         clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
     }
+
 
     void OnClickMainButton()
     {
