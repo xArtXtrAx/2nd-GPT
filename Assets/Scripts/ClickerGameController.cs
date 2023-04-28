@@ -61,6 +61,11 @@ public class ClickerGameController : MonoBehaviour
             upgradeButton.interactable = false;
         }
 
+        // Calculate the available clicks and update the text
+        int availableClicks = clickCounter / incrementButtonThreshold;
+        incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
+
+        // Update the incrementButton clickability and progress
         if (clickCounter >= incrementButtonThreshold)
         {
             incrementButton.interactable = true;
@@ -76,16 +81,11 @@ public class ClickerGameController : MonoBehaviour
         Color handleColor = incrementButtonHandle.color;
         handleColor.a = clickCounter > 0 ? 1f : 0f;
         incrementButtonHandle.color = handleColor;
-
-        // Calculate the available clicks and update the text
-        int availableClicks = clickCounter / incrementButtonThreshold;
-        incrementButtonCounterText.text = $"Available Clicks: {availableClicks}";
         
         powerLevelText.text = $"Power Level: {incrementButtonClicks - 1}";
 
         clicksPerSecondCounterText.text = $"Clicks per Second: {clicksPerSecond}";
     }
-
 
     void OnClickIncrementButton()
     {
@@ -97,7 +97,6 @@ public class ClickerGameController : MonoBehaviour
             UpdateUI();
         }
     }
-
 
 
     void OnClickMainButton()
