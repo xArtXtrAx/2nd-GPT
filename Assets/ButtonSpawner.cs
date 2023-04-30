@@ -28,7 +28,15 @@ public class ButtonSpawner : MonoBehaviour
 
             // Set the position of the button relative to the previous button
             float buttonHeight = buttonRectTransform.rect.height;
-            yOffset += buttonHeight;
+
+            if (i == 0)
+            {
+                yOffset = 0;
+            }
+            else
+            {
+                yOffset += buttonHeight;
+            }
             buttonRectTransform.anchoredPosition = new Vector2(0, -yOffset);
 
             // Update the content size to fit the new button
