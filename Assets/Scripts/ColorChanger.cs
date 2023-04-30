@@ -31,5 +31,7 @@ public class ColorChanger : MonoBehaviour
         }
         
         GetComponent<SpriteRenderer>().color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
+        Debug.Log($"Time.deltaTime: {Time.deltaTime}, Color Amount: {colorAmount}");
+
     }
 }
