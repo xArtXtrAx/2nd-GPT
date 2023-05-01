@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f98b4c2c19a8a47a16acdb63629843, type: 3}
   m_Name: UpgradeData 1
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: Increment Click Count
+  description: Increases the Click Count
   icon: {fileID: 0}
-  baseCost: 0
-  costMultiplier: 0
-  effectValue: 0
+  baseCost: 10
+  costMultiplier: 2
+  effectValue: 1

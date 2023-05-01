@@ -10,6 +10,20 @@ public class ClickerController : MonoBehaviour
     public int autoClickValue = 1;
     public float autoClickRate = 0f;
 
+    public static ClickerController Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("Another instance of ClickerController already exists!");
+        }
+    }
+
     private void Start()
     {
         StartCoroutine(AutoClick());

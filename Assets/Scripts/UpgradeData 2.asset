@@ -16,5 +16,5 @@ MonoBehaviour:
   description: Increases the value of one click
   icon: {fileID: 0}
   baseCost: 20
-  costMultiplier: 1.5
+  costMultiplier: 2
   effectValue: 2

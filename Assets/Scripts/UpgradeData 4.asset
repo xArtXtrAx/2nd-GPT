@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25f98b4c2c19a8a47a16acdb63629843, type: 3}
-  m_Name: UpgradeData 0
+  m_Name: UpgradeData 4
   m_EditorClassIdentifier: 
   upgradeName: Decrease Click Count
   description: Decreases our clickcount
   icon: {fileID: 0}
   baseCost: 40
-  costMultiplier: 1.5
+  costMultiplier: 2
   effectValue: 2

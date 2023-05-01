@@ -9,6 +9,8 @@ public class UpgradeManager : MonoBehaviour
 
     void Start()
     {
+        clickerController = ClickerController.Instance;
+
         upgrades = new List<Upgrade>();
 
         foreach (UpgradeData upgradeData in upgradeDataList)

@@ -422,7 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614eb17fc1f74e4438a9d3472c48a431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickCountText: {fileID: 0}
+  clickCountText: {fileID: 158463911}
+  clickCount: 0
+  clickValue: 1
+  autoClickValue: 1
+  autoClickRate: 0
 --- !u!4 &172455959
 Transform:
   m_ObjectHideFlags: 0
@@ -656,7 +660,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 375324387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693876411}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: PurchaseUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &375324387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,7 +901,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 544577443}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693876411}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: PurchaseUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &544577443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +952,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544577440}
   m_CullTransparentMesh: 1
+--- !u!1 &693876410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 693876412}
+  - component: {fileID: 693876411}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &693876411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693876410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7b0da587589024c8947f5ae6441e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickerController: {fileID: 0}
+  upgradeDataList:
+  - {fileID: 11400000, guid: 0b4cea4b72647e14ebe6a5b6fad8ab48, type: 2}
+  - {fileID: 11400000, guid: 2da5f712321f09140ac2ad07ab2c327b, type: 2}
+  - {fileID: 11400000, guid: 2e71f4386744d944d8b9e6079be5a50f, type: 2}
+  - {fileID: 11400000, guid: 050aa4642313844428370b5fc4f4b45b, type: 2}
+--- !u!4 &693876412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693876410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400.71295, y: 270.15085, z: 0.25362098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731498839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1085,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 731498842}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693876411}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: PurchaseUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &731498842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,7 +1219,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 951949062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 172455958}
+        m_TargetAssemblyTypeName: ClickerController, Assembly-CSharp
+        m_MethodName: IncrementClickCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &951949062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,7 +1852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2089234911}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693876411}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: PurchaseUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2089234911
 MonoBehaviour:
   m_ObjectHideFlags: 0

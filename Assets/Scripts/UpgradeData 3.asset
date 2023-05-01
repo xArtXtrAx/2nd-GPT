@@ -16,5 +16,5 @@ MonoBehaviour:
   description: Increases the autoclick rate
   icon: {fileID: 0}
   baseCost: 30
-  costMultiplier: 1.5
+  costMultiplier: 2
   effectValue: 2
