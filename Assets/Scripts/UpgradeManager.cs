@@ -20,6 +20,11 @@ public class UpgradeManager : MonoBehaviour
             upgrades.Add(new Upgrade(upgradeData));
         }
 
+        // Assign the effect methods for each UpgradeData
+        upgradeDataList[0].effect = clickerController.IncreaseClicksPerClick;
+        upgradeDataList[1].effect = clickerController.IncreaseExtraClicksPerSecond;
+        upgradeDataList[2].effect = clickerController.DoubleTotalClicks;
+
         for (int i = 0; i < upgradeButtons.Count; i++)
         {
             int index = i;
