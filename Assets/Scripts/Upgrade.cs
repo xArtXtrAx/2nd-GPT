@@ -8,6 +8,7 @@ public class Upgrade : ScriptableObject
     public double costMultiplier;
     public UpgradeType upgradeType;
     public double effectValue;
+    public double costIncreaseFactor;
 
     public enum UpgradeType
     {
