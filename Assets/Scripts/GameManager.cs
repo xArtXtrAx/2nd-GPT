@@ -74,9 +74,20 @@ public class GameManager : MonoBehaviour
 
     public float GetMaxAllowedClicks(UpgradeSO upgrade)
     {
-        float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
-        return Mathf.Floor(_totalClicks / cost);
+        float availableClicks = _totalClicks;
+        float upgradeCost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
+        int maxClicks = 0;
+
+        while (availableClicks >= upgradeCost)
+        {
+            maxClicks++;
+            availableClicks -= upgradeCost;
+            upgradeCost *= upgrade.costMultiplier;
+        }
+
+        return maxClicks;
     }
+
 
     private void UpdateTotalClicksText()
     {
