@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     private StringBuilder _stringBuilder;
 
+    public delegate void UpdateClicksDelegate();
+    public static event UpdateClicksDelegate OnUpdateClicks;
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +46,36 @@ public class GameManager : MonoBehaviour
     {
         _totalClicks += _clicksPerClick;
         UpdateTotalClicksText();
+        OnUpdateClicks?.Invoke();
+    }
+
+    public bool CanAffordUpgrade(UpgradeSO upgrade)
+    {
+        float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
+        return _totalClicks >= cost;
+    }
+
+    public void PurchaseUpgrade(UpgradeSO upgrade)
+    {
+        float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
+        _totalClicks -= cost;
+        _clicksPerClick += 1;
+        upgrade.level += 1;
+        UpdateTotalClicksText();
+        UpdateClicksPerClickText();
+        OnUpdateClicks?.Invoke();
+    }
+
+    public float GetUpgradeProgress(UpgradeSO upgrade)
+    {
+        float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
+        return Mathf.Clamp(_totalClicks / cost, 0f, 1f);
+    }
+
+    public float GetMaxAllowedClicks(UpgradeSO upgrade)
+    {
+        float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
+        return Mathf.Floor(_totalClicks / cost);
     }
 
     private void UpdateTotalClicksText()
