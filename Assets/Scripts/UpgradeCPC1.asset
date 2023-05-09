@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Clicks Per Click L1
   baseCost: 10
   costMultiplier: 1.5
-  level: 10
+  level: 0
   clicksRequired: 0
   maxAllowedClicks: 0

@@ -9,4 +9,10 @@ public class UpgradeSO : ScriptableObject
     public float level;
     public float clicksRequired;
     public float maxAllowedClicks;
+
+    public void ResetLevel()
+    {
+        level = 0;
+    }
+
 }
