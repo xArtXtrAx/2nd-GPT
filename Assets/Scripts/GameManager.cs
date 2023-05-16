@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
         OnUpdateClicks?.Invoke();
     }
 
+    public void IncreaseClicksPerSecond(float amount)
+    {
+        _clicksPerSecond += amount;
+    }
+
+
     public bool CanAffordUpgrade(UpgradeSO upgrade)
     {
         float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
@@ -59,7 +65,19 @@ public class GameManager : MonoBehaviour
     {
         float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
         _totalClicks -= cost;
-        _clicksPerClick += 1;
+        switch (upgrade._upgradeType)
+        {
+            case UpgradeSO.UpgradeType.ClicksPerClick:
+                {
+                    _clicksPerClick += 1;
+                    break;
+                }
+            case UpgradeSO.UpgradeType.ClicksPerSecond:
+                {
+                    _clicksPerSecond += 1;
+                    break;
+                }
+        }
         upgrade.level += 1;
         UpdateTotalClicksText();
         UpdateClicksPerClickText();

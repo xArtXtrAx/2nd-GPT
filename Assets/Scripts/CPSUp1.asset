@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a411d6390869146b16cee0a26a9bd8, type: 3}
-  m_Name: UpgradeCPC1
+  m_Name: CPSUp1
   m_EditorClassIdentifier: 
-  upgradeName: Clicks Per Click L1
-  baseCost: 10
-  costMultiplier: 1.5
-  level: 0
+  upgradeName: CPS Lv.1
+  baseCost: 20
+  costMultiplier: 1.7
+  level: 5
   clicksRequired: 0
   maxAllowedClicks: 0
+  _upgradeType: 1

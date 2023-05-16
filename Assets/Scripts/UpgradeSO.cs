@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Upgrade", menuName = "Upgrades/Upgrade Clicks Per Click")]
+[CreateAssetMenu(fileName = "Upgrade", menuName = "Upgrades/UpgradeSO")]
 public class UpgradeSO : ScriptableObject
 {
     public string upgradeName;
@@ -9,10 +9,18 @@ public class UpgradeSO : ScriptableObject
     public float level;
     public float clicksRequired;
     public float maxAllowedClicks;
+    public UpgradeType _upgradeType;
+
+
+    public enum UpgradeType
+    {
+        ClicksPerClick,
+        ClicksPerSecond
+        // Add more types here as needed
+    }
 
     public void ResetLevel()
     {
         level = 0;
     }
-
 }
