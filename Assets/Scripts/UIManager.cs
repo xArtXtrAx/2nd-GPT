@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI _clicksPerSecondText;
 
     private StringBuilder _stringBuilder;
+    private float _displayedTotalClicks;
 
     private void Awake()
     {
@@ -18,12 +19,13 @@ public class UIManager : MonoBehaviour
         GameManager.OnUpdateClicks += UpdateTotalClicksText;
         GameManager.OnUpdateClicks += UpdateClicksPerClickText;
         GameManager.OnUpdateClicks += UpdateClicksPerSecondText;
+        GameManager.OnButtonClick += HandleButtonClick;
     }
 
     public void Start()
     {
-        StartCoroutine(UpdateClicksPerSecond());
-
+        _displayedTotalClicks = GameManager.Instance._totalClicks;
+        StartCoroutine(UpdateTotalClicksSmoothly());
     }
 
     private void OnDestroy()
@@ -31,14 +33,36 @@ public class UIManager : MonoBehaviour
         GameManager.OnUpdateClicks -= UpdateTotalClicksText;
         GameManager.OnUpdateClicks -= UpdateClicksPerClickText;
         GameManager.OnUpdateClicks -= UpdateClicksPerSecondText;
+        GameManager.OnButtonClick -= HandleButtonClick;
     }
 
-    IEnumerator UpdateClicksPerSecond()
+    private void HandleButtonClick()
+    {
+        _displayedTotalClicks = GameManager.Instance._totalClicks;
+        UpdateTotalClicksText();
+    }
+
+    IEnumerator UpdateTotalClicksSmoothly()
     {
         while (true)
         {
-            _clicksPerSecondText.text = _stringBuilder.Clear().Append("Clicks Per Second: ").Append(Mathf.FloorToInt(GameManager.Instance._clicksPerSecond)).ToString();
-            yield return new WaitForSeconds(1f);
+            float startValue = _displayedTotalClicks;
+            float endValue = GameManager.Instance._totalClicks + GameManager.Instance._clicksPerSecond;
+            float duration = 1f;
+            float timePassed = 0f;
+
+            while (timePassed < duration)
+            {
+                timePassed += Time.deltaTime;
+                _displayedTotalClicks = Mathf.Lerp(startValue, endValue, timePassed / duration);
+                UpdateTotalClicksText();
+                yield return null;
+            }
+
+            // At the end of each second, update the displayed total clicks to match the actual total clicks
+            _displayedTotalClicks = GameManager.Instance._totalClicks;
+            startValue = _displayedTotalClicks;
+            endValue = GameManager.Instance._totalClicks + GameManager.Instance._clicksPerSecond;
         }
     }
 
@@ -46,7 +70,7 @@ public class UIManager : MonoBehaviour
     {
         _stringBuilder.Clear();
         _stringBuilder.Append("Total Clicks: ");
-        _stringBuilder.Append(Mathf.FloorToInt(GameManager.Instance._totalClicks));
+        _stringBuilder.Append(Mathf.FloorToInt(_displayedTotalClicks));
         _totalClicksText.text = _stringBuilder.ToString();
     }
 

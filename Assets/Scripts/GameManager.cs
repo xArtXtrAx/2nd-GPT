@@ -11,8 +11,14 @@ public class GameManager : MonoBehaviour
     public float _clicksPerClick;
     public float _clicksPerSecond;
 
+    public float _clicksToAdd;
+
     public delegate void UpdateClicksDelegate();
     public static event UpdateClicksDelegate OnUpdateClicks;
+
+    public delegate void ButtonClickDelegate();
+    public static event ButtonClickDelegate OnButtonClick;
+
 
     private void Awake()
     {
@@ -38,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         _totalClicks += _clicksPerClick;
         OnUpdateClicks?.Invoke();
+        OnButtonClick?.Invoke();
     }
 
     IEnumerator IncrementClicksPerSecond()
