@@ -1,20 +1,15 @@
 using UnityEngine;
 using TMPro;
 using System.Text;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public TextMeshProUGUI _totalClicksText;
-    public TextMeshProUGUI _clicksPerClickText;
-    public TextMeshProUGUI _clicksPerSecondText;
-
-    private float _totalClicks;
-    private float _clicksPerClick;
-    private float _clicksPerSecond;
-
-    private StringBuilder _stringBuilder;
+    public float _totalClicks;
+    public float _clicksPerClick;
+    public float _clicksPerSecond;
 
     public delegate void UpdateClicksDelegate();
     public static event UpdateClicksDelegate OnUpdateClicks;
@@ -32,22 +27,29 @@ public class GameManager : MonoBehaviour
         }
 
         _clicksPerClick = 1;
-        _stringBuilder = new StringBuilder();
     }
 
     private void Start()
     {
-        UpdateTotalClicksText();
-        UpdateClicksPerClickText();
-        UpdateClicksPerSecondText();
+        StartCoroutine(IncrementClicksPerSecond());
     }
 
     public void AddClick()
     {
         _totalClicks += _clicksPerClick;
-        UpdateTotalClicksText();
         OnUpdateClicks?.Invoke();
     }
+
+    IEnumerator IncrementClicksPerSecond()
+    {
+        while (true)
+        {
+            _totalClicks += _clicksPerSecond;
+            OnUpdateClicks?.Invoke();
+            yield return new WaitForSecondsRealtime(1f);
+        }
+    }
+
 
     public void IncreaseClicksPerSecond(float amount)
     {
@@ -79,8 +81,6 @@ public class GameManager : MonoBehaviour
                 }
         }
         upgrade.level += 1;
-        UpdateTotalClicksText();
-        UpdateClicksPerClickText();
         OnUpdateClicks?.Invoke();
     }
 
@@ -104,30 +104,5 @@ public class GameManager : MonoBehaviour
         }
 
         return maxClicks;
-    }
-
-
-    private void UpdateTotalClicksText()
-    {
-        _stringBuilder.Clear();
-        _stringBuilder.Append("Total Clicks: ");
-        _stringBuilder.Append(Mathf.FloorToInt(_totalClicks));
-        _totalClicksText.text = _stringBuilder.ToString();
-    }
-
-    private void UpdateClicksPerClickText()
-    {
-        _stringBuilder.Clear();
-        _stringBuilder.Append("Clicks Per Click: ");
-        _stringBuilder.Append(Mathf.FloorToInt(_clicksPerClick));
-        _clicksPerClickText.text = _stringBuilder.ToString();
-    }
-
-    private void UpdateClicksPerSecondText()
-    {
-        _stringBuilder.Clear();
-        _stringBuilder.Append("Clicks Per Second: ");
-        _stringBuilder.Append(Mathf.FloorToInt(_clicksPerSecond));
-        _clicksPerSecondText.text = _stringBuilder.ToString();
     }
 }
