@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         float cost = upgrade.baseCost * Mathf.Pow(upgrade.costMultiplier, upgrade.level);
         _totalClicks -= cost;
-        switch (upgrade._upgradeType)
+        switch (upgrade.upgradeType)
         {
             case UpgradeSO.UpgradeType.ClicksPerClick:
                 {
