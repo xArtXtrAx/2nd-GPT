@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
         {
             case UpgradeSO.UpgradeType.ClicksPerClick:
                 {
-                    _clicksPerClick += 1;
+                    _clicksPerClick += upgrade.power;
                     break;
                 }
             case UpgradeSO.UpgradeType.ClicksPerSecond:
                 {
-                    _clicksPerSecond += 1;
+                    _clicksPerSecond += upgrade.power;
                     break;
                 }
         }
