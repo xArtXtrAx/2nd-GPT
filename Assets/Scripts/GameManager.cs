@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     public float _clicksToAdd;
 
+    private float _timeSinceLastUpdate = 0f;
+    private float _updateInterval = 0.1f;  // adjust this to change how often the event is invoked
+
     public delegate void UpdateClicksDelegate();
     public static event UpdateClicksDelegate OnUpdateClicks;
 
@@ -39,6 +42,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         _totalClicks += _clicksPerSecond * Time.deltaTime;
+
+        _timeSinceLastUpdate += Time.deltaTime;
+        if (_timeSinceLastUpdate >= _updateInterval)
+        {
+            OnUpdateClicks?.Invoke();
+            _timeSinceLastUpdate = 0f;
+        }
     }
 
     public void AddClick()

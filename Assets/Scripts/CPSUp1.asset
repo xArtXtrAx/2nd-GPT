@@ -15,9 +15,9 @@ MonoBehaviour:
   upgradeName: CPS L1
   baseCost: 20
   costMultiplier: 1.7
-  level: 2
+  level: 0
   clicksRequired: 0
   maxAllowedClicks: 0
   _upgradeType: 1
   _tier: 0
-  _power: 1
+  _power: 1000

@@ -17,8 +17,9 @@ public class UIManager : MonoBehaviour
         _stringBuilder = new StringBuilder();
 
         GameManager.OnUpdateClicks += HandleUpdateClicks;
-        GameManager.OnButtonClick += HandleButtonClick;
+        GameManager.OnButtonClick += HandleUpdateClicks;
     }
+
 
     private void Update()
     {
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
         _displayedTotalClicks = GameManager.Instance._totalClicks;
         _targetTotalClicks = GameManager.Instance._totalClicks;
+        UpdateTotalClicksText();
     }
 
 
