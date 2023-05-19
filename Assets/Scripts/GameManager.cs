@@ -43,13 +43,9 @@ public class GameManager : MonoBehaviour
     {
         _totalClicks += _clicksPerSecond * Time.deltaTime;
 
-        _timeSinceLastUpdate += Time.deltaTime;
-        if (_timeSinceLastUpdate >= _updateInterval)
-        {
-            OnUpdateClicks?.Invoke();
-            _timeSinceLastUpdate = 0f;
-        }
+        OnUpdateClicks?.Invoke();
     }
+
 
     public void AddClick()
     {

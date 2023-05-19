@@ -1039,7 +1039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4582208544762462040, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: m_Name
-      value: CPSUpgradeButton1
+      value: CPSUp1
       objectReference: {fileID: 0}
     - target: {fileID: 4582208544762462042, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: upgrade
@@ -1685,7 +1685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4582208544762462040, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: m_Name
-      value: CPCUpgradeButton1
+      value: CPCUp1
       objectReference: {fileID: 0}
     - target: {fileID: 4582208544762462043, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: m_Pivot.x
