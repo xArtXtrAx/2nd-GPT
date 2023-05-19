@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a411d6390869146b16cee0a26a9bd8, type: 3}
   m_Name: CPSUp1
   m_EditorClassIdentifier: 
-  upgradeName: CPS Lv.1
+  upgradeName: CPS L1
   baseCost: 20
   costMultiplier: 1.7
-  level: 5
+  level: 2
   clicksRequired: 0
   maxAllowedClicks: 0
   _upgradeType: 1
+  _tier: 0
+  _power: 1

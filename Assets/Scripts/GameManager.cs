@@ -35,28 +35,18 @@ public class GameManager : MonoBehaviour
         _clicksPerClick = 1;
     }
 
-    private void Start()
+
+    private void Update()
     {
-        StartCoroutine(IncrementClicksPerSecond());
+        _totalClicks += _clicksPerSecond * Time.deltaTime;
     }
 
     public void AddClick()
     {
         _totalClicks += _clicksPerClick;
-        OnUpdateClicks?.Invoke();
         OnButtonClick?.Invoke();
+        OnUpdateClicks?.Invoke();
     }
-
-    IEnumerator IncrementClicksPerSecond()
-    {
-        while (true)
-        {
-            _totalClicks += _clicksPerSecond;
-            OnUpdateClicks?.Invoke();
-            yield return new WaitForSecondsRealtime(1f);
-        }
-    }
-
 
     public void IncreaseClicksPerSecond(float amount)
     {
@@ -90,6 +80,7 @@ public class GameManager : MonoBehaviour
         upgrade.level += 1;
         OnUpdateClicks?.Invoke();
     }
+
 
     public float GetUpgradeProgress(UpgradeSO upgrade)
     {

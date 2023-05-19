@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &38939653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 38939655}
+  - component: {fileID: 38939654}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &38939654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38939653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8086f5aa8d552104caf4e1d62e0991d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalClicksText: {fileID: 246247174}
+  _clicksPerClickText: {fileID: 995269323}
+  _clicksPerSecondText: {fileID: 500794492}
+--- !u!4 &38939655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38939653}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246247171
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +236,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Total Clicks: 0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -418,7 +467,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Clicks Per Second:
+
+    0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -871,7 +922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Clicks Per Click: 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1395,9 +1446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea0ca9e92524a443a0836a77e6e5cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalClicksText: {fileID: 246247174}
-  _clicksPerClickText: {fileID: 995269323}
-  _clicksPerSecondText: {fileID: 500794492}
+  _totalClicks: 0
+  _clicksPerClick: 0
+  _clicksPerSecond: 0
+  _clicksToAdd: 0
 --- !u!4 &1784334592
 Transform:
   m_ObjectHideFlags: 0
@@ -1559,6 +1611,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4582208543861093095, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
+      propertyPath: m_text
+      value: 'Level: 0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582208544485868741, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
+      propertyPath: m_text
+      value: 'Max Clicks: 0'
+      objectReference: {fileID: 0}
     - target: {fileID: 4582208544762462040, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: m_Name
       value: CPCUpgradeButton1
@@ -1646,6 +1706,10 @@ PrefabInstance:
     - target: {fileID: 4582208544762462043, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582208544938387976, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
+      propertyPath: m_text
+      value: 'Cost: ?'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4006c00ec7a277e4aa0d594fd4b1a0de, type: 3}
